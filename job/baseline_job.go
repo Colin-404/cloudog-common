@@ -6,11 +6,11 @@ import (
 	"github.com/colin-404/cloudog-common/proto"
 )
 
-func NewBaselineJob(params JobCreateRequest) (*Job, error) {
+func (j *Job) NewBaselineJob(params JobCreateRequest) (*Job, error) {
 	if params.JobType != "baseline" {
 		return nil, fmt.Errorf("invalid job type: %s", params.JobType)
 	}
-	job := NewJob(params.JobType, params.JobParams)
+	job := j.NewJob(params.JobType, params.JobParams)
 	job.Summary = &JobBaselineSummary{}
 	job.Results = &JobBaselineChecks{}
 	return job, nil
