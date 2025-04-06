@@ -4,7 +4,7 @@ import "github.com/colin-404/cloudog-common/proto"
 
 type BaselineReport struct {
 	Task      proto.Task
-	Agent     proto.Agent
+	Host      proto.Host
 	Timestamp string          `json:"timestamp"`
 	Summary   BaselineSummary `json:"summary"`
 	Checks    []BaselineCheck `json:"checks"`
