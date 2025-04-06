@@ -68,31 +68,34 @@ func (TaskResponse_Status) EnumDescriptor() ([]byte, []int) {
 	return file_grpc_proto_rawDescGZIP(), []int{4, 0}
 }
 
-type Agent struct {
+type Host struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ID            string                 `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
 	Hostname      string                 `protobuf:"bytes,2,opt,name=Hostname,proto3" json:"Hostname,omitempty"`
 	Version       string                 `protobuf:"bytes,3,opt,name=Version,proto3" json:"Version,omitempty"`
 	PrivateIPv4   []string               `protobuf:"bytes,4,rep,name=PrivateIPv4,proto3" json:"PrivateIPv4,omitempty"`
 	PublicIPv4    []string               `protobuf:"bytes,5,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
+	OS            string                 `protobuf:"bytes,6,opt,name=OS,proto3" json:"OS,omitempty"`
+	Platform      string                 `protobuf:"bytes,7,opt,name=Platform,proto3" json:"Platform,omitempty"`
+	KernelVersion string                 `protobuf:"bytes,8,opt,name=KernelVersion,proto3" json:"KernelVersion,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Agent) Reset() {
-	*x = Agent{}
+func (x *Host) Reset() {
+	*x = Host{}
 	mi := &file_grpc_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Agent) String() string {
+func (x *Host) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Agent) ProtoMessage() {}
+func (*Host) ProtoMessage() {}
 
-func (x *Agent) ProtoReflect() protoreflect.Message {
+func (x *Host) ProtoReflect() protoreflect.Message {
 	mi := &file_grpc_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -104,49 +107,70 @@ func (x *Agent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Agent.ProtoReflect.Descriptor instead.
-func (*Agent) Descriptor() ([]byte, []int) {
+// Deprecated: Use Host.ProtoReflect.Descriptor instead.
+func (*Host) Descriptor() ([]byte, []int) {
 	return file_grpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Agent) GetID() string {
+func (x *Host) GetID() string {
 	if x != nil {
 		return x.ID
 	}
 	return ""
 }
 
-func (x *Agent) GetHostname() string {
+func (x *Host) GetHostname() string {
 	if x != nil {
 		return x.Hostname
 	}
 	return ""
 }
 
-func (x *Agent) GetVersion() string {
+func (x *Host) GetVersion() string {
 	if x != nil {
 		return x.Version
 	}
 	return ""
 }
 
-func (x *Agent) GetPrivateIPv4() []string {
+func (x *Host) GetPrivateIPv4() []string {
 	if x != nil {
 		return x.PrivateIPv4
 	}
 	return nil
 }
 
-func (x *Agent) GetPublicIPv4() []string {
+func (x *Host) GetPublicIPv4() []string {
 	if x != nil {
 		return x.PublicIPv4
 	}
 	return nil
 }
 
+func (x *Host) GetOS() string {
+	if x != nil {
+		return x.OS
+	}
+	return ""
+}
+
+func (x *Host) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+func (x *Host) GetKernelVersion() string {
+	if x != nil {
+		return x.KernelVersion
+	}
+	return ""
+}
+
 type Record struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Agent         *Agent                 `protobuf:"bytes,1,opt,name=agent,proto3" json:"agent,omitempty"`
+	Host          *Host                  `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
 	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -182,9 +206,9 @@ func (*Record) Descriptor() ([]byte, []int) {
 	return file_grpc_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Record) GetAgent() *Agent {
+func (x *Record) GetHost() *Host {
 	if x != nil {
-		return x.Agent
+		return x.Host
 	}
 	return nil
 }
@@ -409,17 +433,20 @@ var File_grpc_proto protoreflect.FileDescriptor
 const file_grpc_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"grpc.proto\x12\ffiletransfer\"\x8f\x01\n" +
-	"\x05Agent\x12\x0e\n" +
+	"grpc.proto\x12\ffiletransfer\"\xe0\x01\n" +
+	"\x04Host\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x1a\n" +
 	"\bHostname\x18\x02 \x01(\tR\bHostname\x12\x18\n" +
 	"\aVersion\x18\x03 \x01(\tR\aVersion\x12 \n" +
 	"\vPrivateIPv4\x18\x04 \x03(\tR\vPrivateIPv4\x12\x1e\n" +
 	"\n" +
 	"PublicIPv4\x18\x05 \x03(\tR\n" +
-	"PublicIPv4\"G\n" +
-	"\x06Record\x12)\n" +
-	"\x05agent\x18\x01 \x01(\v2\x13.filetransfer.AgentR\x05agent\x12\x12\n" +
+	"PublicIPv4\x12\x0e\n" +
+	"\x02OS\x18\x06 \x01(\tR\x02OS\x12\x1a\n" +
+	"\bPlatform\x18\a \x01(\tR\bPlatform\x12$\n" +
+	"\rKernelVersion\x18\b \x01(\tR\rKernelVersion\"D\n" +
+	"\x06Record\x12&\n" +
+	"\x04host\x18\x01 \x01(\v2\x12.filetransfer.HostR\x04host\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\tR\x04data\"\xf9\x01\n" +
 	"\x04Task\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1c\n" +
@@ -469,7 +496,7 @@ var file_grpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_grpc_proto_goTypes = []any{
 	(TaskResponse_Status)(0), // 0: filetransfer.TaskResponse.Status
-	(*Agent)(nil),            // 1: filetransfer.Agent
+	(*Host)(nil),             // 1: filetransfer.Host
 	(*Record)(nil),           // 2: filetransfer.Record
 	(*Task)(nil),             // 3: filetransfer.Task
 	(*TaskResult)(nil),       // 4: filetransfer.TaskResult
@@ -478,7 +505,7 @@ var file_grpc_proto_goTypes = []any{
 	nil,                      // 7: filetransfer.TaskResponse.ParamsEntry
 }
 var file_grpc_proto_depIdxs = []int32{
-	1, // 0: filetransfer.Record.agent:type_name -> filetransfer.Agent
+	1, // 0: filetransfer.Record.host:type_name -> filetransfer.Host
 	6, // 1: filetransfer.Task.task_params:type_name -> filetransfer.Task.TaskParamsEntry
 	3, // 2: filetransfer.TaskResult.task:type_name -> filetransfer.Task
 	7, // 3: filetransfer.TaskResponse.params:type_name -> filetransfer.TaskResponse.ParamsEntry
