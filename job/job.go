@@ -12,7 +12,7 @@ type Job struct {
 	CreateTime string            `json:"create_time"`
 	JobType    string            `json:"job_type"`
 	JobParams  map[string]string `json:"job_params"`
-	Tasks      []proto.Task      `json:"task"`
+	Tasks      []*proto.Task     `json:"task"`
 	Summary    interface{}       `json:"summary"`
 	Results    interface{}       `json:"results"`
 }
