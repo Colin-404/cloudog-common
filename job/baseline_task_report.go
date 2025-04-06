@@ -1,4 +1,4 @@
-package report
+package job
 
 import "github.com/colin-404/cloudog-common/proto"
 
