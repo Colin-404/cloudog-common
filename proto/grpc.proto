@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package filetransfer;
 
-option go_package = "github.com/colin-404/cloudog/proto";
+option go_package = "github.com/colin-404/cloudog-common/proto";
 
 message Agent {
   string ID = 1;
