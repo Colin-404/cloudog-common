@@ -2,7 +2,7 @@ package report
 
 import "github.com/colin-404/cloudog-common/proto"
 
-type Job struct {
+type BaselineJob struct {
 	JobID     string              `json:"job_id"`
 	JobType   string              `json:"job_type"`
 	JobParams map[string]string   `json:"job_params"`
@@ -13,9 +13,10 @@ type Job struct {
 }
 
 type JobBaselineSummary struct {
-	TotalChecks  int `json:"total_checks"`
-	PassedChecks int `json:"passed_checks"`
-	FailedChecks int `json:"failed_checks"`
+	TotalChecks      int               `json:"total_checks"`
+	PassedChecks     int               `json:"passed_checks"`
+	FailedChecks     int               `json:"failed_checks"`
+	BaselineSummarys []BaselineSummary `json:"baseline_summary"`
 }
 
 type JobBaselineChecks struct {
