@@ -47,10 +47,10 @@ func (j *Job) SetResults(results interface{}) {
 }
 
 // 创建新的 BaselineJob 的构造函数
-func NewJob(params map[string]string) *Job {
+func NewJob(jobType string, params map[string]string) *Job {
 	return &Job{
 		JobID:      GenerateJobID(),
-		JobType:    "baseline_job",
+		JobType:    jobType,
 		JobParams:  params,
 		CreateTime: time.Now().Format(time.RFC3339),
 	}
