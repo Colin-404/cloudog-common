@@ -1,10 +1,9 @@
 package job
 
-import "github.com/colin-404/cloudog-common/proto"
-
 type BaselineReport struct {
-	Task      proto.Task
-	Agent     proto.Agent
+	TaskID    string          `json:"task_id"`
+	AgentID   string          `json:"agent_id"`
+	JobID     string          `json:"job_id"`
 	Timestamp string          `json:"timestamp"`
 	Summary   BaselineSummary `json:"summary"`
 	Checks    []BaselineCheck `json:"checks"`
@@ -18,6 +17,7 @@ type BaselineSummary struct {
 
 type BaselineCheck struct {
 	ID          string                 `json:"id"`
+	AgentID     string                 `json:"agent_id"`
 	Title       string                 `json:"title"`
 	Category    string                 `json:"category"`
 	Severity    string                 `json:"severity"`
