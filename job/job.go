@@ -2,55 +2,64 @@ package job
 
 import (
 	"time"
-
-	"github.com/colin-404/cloudog-common/proto"
 )
 
 // BaseJob 提供了 Job 接口的基本实现
-type Job struct {
-	JobID      string              `json:"job_id"`
-	CreateTime string              `json:"create_time"`
-	JobStatus  string              `json:"job_status"`
-	JobType    string              `json:"job_type"`
-	JobParams  map[string]string   `json:"job_params"`
-	Tasks      []*proto.Task       `json:"task"`
-	TaskResult []*proto.TaskResult `json:"task_report"`
-	Summary    interface{}         `json:"summary"`
-	Results    interface{}         `json:"results"`
+
+type TaskReport struct {
+	TaskID     string            `json:"task_id"`
+	CreateTime string            `json:"time"`
+	TaskType   string            `json:"task_type"`
+	TaskParams map[string]string `json:"task_params"`
+	AgentID    string            `json:"agent_id"`
+	Status     string            `json:"status"`
+	JobID      string            `json:"job_id"`
+	Result     interface{}       `json:"result"`
+}
+
+type JobReport struct {
+	JobID       string            `json:"job_id"`
+	CreateTime  string            `json:"create_time"`
+	JobStatus   string            `json:"job_status"`
+	JobType     string            `json:"job_type"`
+	JobParams   map[string]string `json:"job_params"`
+	TaskReports []*TaskReport     `json:"task_reports"`
+	Summary     interface{}       `json:"summary"`
+	Results     interface{}       `json:"results"`
 }
 
 // 实现 Job 接口的方法
-func (j *Job) GetJobID() string {
+func (j *JobReport) GetJobID() string {
 	return j.JobID
 }
 
-func (j *Job) GetJobType() string {
+func (j *JobReport) GetJobType() string {
 	return j.JobType
 }
 
-func (j *Job) GetJobParams() map[string]string {
+func (j *JobReport) GetJobParams() map[string]string {
 	return j.JobParams
 }
 
-func (j *Job) GetSummary() interface{} {
+func (j *JobReport) GetSummary() interface{} {
 	return j.Summary
 }
 
-func (j *Job) GetResults() interface{} {
+func (j *JobReport) GetResults() interface{} {
 	return j.Results
 }
 
-func (j *Job) SetSummary(summary interface{}) {
+func (j *JobReport) SetSummary(summary interface{}) {
 	j.Summary = summary
 }
 
-func (j *Job) SetResults(results interface{}) {
+func (j *JobReport) SetResults(results interface{}) {
 	j.Results = results
 }
 
 // 创建新的 BaselineJob 的构造函数
-func (j *Job) NewJob(jobType string, params map[string]string) *Job {
-	return &Job{
+func (j *JobReport) NewJobReport(jobType string, params map[string]string) *JobReport {
+	return &JobReport{
 		JobID:      GenerateJobID(),
 		JobType:    jobType,
 		JobParams:  params,
