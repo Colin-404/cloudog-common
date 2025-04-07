@@ -1,16 +1,12 @@
 package job
 
 import (
-	"fmt"
-
 	"github.com/colin-404/cloudog-common/proto"
 )
 
-func (j *Job) NewBaselineJob(params JobCreateRequest) (*Job, error) {
-	if params.JobType != "baseline" {
-		return nil, fmt.Errorf("invalid job type: %s", params.JobType)
-	}
-	job := j.NewJob(params.JobType, params.JobParams)
+func (j *Job) NewBaselineJob(params map[string]string) (*Job, error) {
+	jobType := "baseline"
+	job := j.NewJob(jobType, params)
 	job.Summary = &JobBaselineSummary{}
 	job.Results = &JobBaselineChecks{}
 	return job, nil

@@ -10,6 +10,7 @@ import (
 type Job struct {
 	JobID      string            `json:"job_id"`
 	CreateTime string            `json:"create_time"`
+	JobStatus  string            `json:"job_status"`
 	JobType    string            `json:"job_type"`
 	JobParams  map[string]string `json:"job_params"`
 	Tasks      []*proto.Task     `json:"task"`
