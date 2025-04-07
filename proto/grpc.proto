@@ -24,10 +24,12 @@ message Record {
 //server --> agent，任务下发给agent
 message Task {
   string task_id = 1;           // 任务ID
-  int64 timestamp = 2;          // 任务执行时间
-  string agent_id = 3;     // agent ID
-  string task_type = 4;         // 任务类型
-  map<string, string> task_params = 5; // 任务参数 
+  string task_status = 2;       // 任务状态
+  string task_name = 3;         // 任务名称
+  int64 timestamp = 4;          // 任务执行时间
+  string agent_id = 5;     // agent ID
+  string task_type = 6;         // 任务类型
+  map<string, string> task_params = 7; // 任务参数 
 }
 
 //agent --> server,任务结果上传
