@@ -2,30 +2,21 @@ package job
 
 import (
 	"time"
+
+	"github.com/colin-404/cloudog-common/proto"
 )
 
 // BaseJob 提供了 Job 接口的基本实现
 
-type TaskReport struct {
-	TaskID     string            `json:"task_id"`
-	CreateTime string            `json:"time"`
-	TaskType   string            `json:"task_type"`
-	TaskParams map[string]string `json:"task_params"`
-	AgentID    string            `json:"agent_id"`
-	Status     string            `json:"status"`
-	JobID      string            `json:"job_id"`
-	Result     interface{}       `json:"result"`
-}
-
 type JobReport struct {
-	JobID       string            `json:"job_id"`
-	CreateTime  string            `json:"create_time"`
-	JobStatus   string            `json:"job_status"`
-	JobType     string            `json:"job_type"`
-	JobParams   map[string]string `json:"job_params"`
-	TaskReports []*TaskReport     `json:"task_reports"`
-	Summary     interface{}       `json:"summary"`
-	Results     interface{}       `json:"results"`
+	JobID       string              `json:"job_id"`
+	CreateTime  string              `json:"create_time"`
+	JobStatus   string              `json:"job_status"`
+	JobType     string              `json:"job_type"`
+	JobParams   map[string]string   `json:"job_params"`
+	TaskReports []*proto.TaskReport `json:"task_reports"`
+	Summary     interface{}         `json:"summary"`
+	Results     interface{}         `json:"results"`
 }
 
 // 实现 Job 接口的方法

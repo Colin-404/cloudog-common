@@ -22,22 +22,38 @@ message Record {
 
 
 //server --> agent，任务下发给agent
-message Task {
+// message Task {
+//   string task_id = 1;           // 任务ID
+//   string job_id = 2;            // 任务ID
+//   string task_status = 3;       // 任务状态
+//   string task_name = 4;         // 任务名称
+//   int64 timestamp = 5;          // 任务执行时间
+//   string agent_id = 6;     // agent ID
+//   string task_type = 7;         // 任务类型
+//   map<string, string> task_params = 8; // 任务参数 
+// }
+
+
+
+
+
+message TaskReport {
   string task_id = 1;           // 任务ID
   string job_id = 2;            // 任务ID
   string task_status = 3;       // 任务状态
-  string task_name = 4;         // 任务名称
-  int64 timestamp = 5;          // 任务执行时间
-  string agent_id = 6;     // agent ID
-  string task_type = 7;         // 任务类型
-  map<string, string> task_params = 8; // 任务参数 
+  string create_time = 4;          // 任务执行时间
+  string agent_id = 5;     // agent ID
+  string task_type = 6;         // 任务类型
+  map<string, string> task_params = 7; // 任务参数 
+  bytes result = 8;       // 任务结果
 }
 
+
 //agent --> server,任务结果上传
-message TaskResult {
-  Task task = 1;
-  bytes data = 2;
-}
+// message TaskResult {
+//   Task task = 1;
+//   bytes data = 2;
+// }
 
 //server --> agent,上传结果响应
 message TaskResponse {
@@ -57,12 +73,12 @@ message TaskResponse {
 
 // 上传任务执行结果
 service TaskResultTransfer {
-  rpc Upload(stream TaskResult) returns (TaskResponse);
+  rpc Upload(stream TaskReport) returns (TaskResponse);
 }
 
 // 接收agent心跳
 service RecordTransfer {
-  rpc Transfer(stream Record) returns (stream Task);
+  rpc Transfer(stream Record) returns (stream TaskReport);
 }
 
 
