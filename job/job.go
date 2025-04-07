@@ -8,14 +8,15 @@ import (
 
 // BaseJob 提供了 Job 接口的基本实现
 type Job struct {
-	JobID      string            `json:"job_id"`
-	CreateTime string            `json:"create_time"`
-	JobStatus  string            `json:"job_status"`
-	JobType    string            `json:"job_type"`
-	JobParams  map[string]string `json:"job_params"`
-	Tasks      []*proto.Task     `json:"task"`
-	Summary    interface{}       `json:"summary"`
-	Results    interface{}       `json:"results"`
+	JobID      string              `json:"job_id"`
+	CreateTime string              `json:"create_time"`
+	JobStatus  string              `json:"job_status"`
+	JobType    string              `json:"job_type"`
+	JobParams  map[string]string   `json:"job_params"`
+	Tasks      []*proto.Task       `json:"task"`
+	TaskReport []*proto.TaskResult `json:"task_report"`
+	Summary    interface{}         `json:"summary"`
+	Results    interface{}         `json:"results"`
 }
 
 // 实现 Job 接口的方法
