@@ -1,9 +1,5 @@
 package job
 
-import (
-	"github.com/colin-404/cloudog-common/proto"
-)
-
 func (j *Job) NewBaselineJob(params map[string]string) (*Job, error) {
 	jobType := "baseline"
 	job := j.NewJob(jobType, params)
@@ -30,6 +26,6 @@ type JobBaselineSummary struct {
 }
 
 type JobBaselineChecks struct {
-	Agent  proto.Agent     `json:"agent"`
-	Checks []BaselineCheck `json:"checks"`
+	AgentID string          `json:"agent_id"`
+	Checks  []BaselineCheck `json:"checks"`
 }
