@@ -224,12 +224,13 @@ func (x *Record) GetData() string {
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TaskId        string                 `protobuf:"bytes,1,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`                                                                                       // 任务ID
-	TaskStatus    string                 `protobuf:"bytes,2,opt,name=task_status,json=taskStatus,proto3" json:"task_status,omitempty"`                                                                           // 任务状态
-	TaskName      string                 `protobuf:"bytes,3,opt,name=task_name,json=taskName,proto3" json:"task_name,omitempty"`                                                                                 // 任务名称
-	Timestamp     int64                  `protobuf:"varint,4,opt,name=timestamp,proto3" json:"timestamp,omitempty"`                                                                                              // 任务执行时间
-	AgentId       string                 `protobuf:"bytes,5,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`                                                                                    // agent ID
-	TaskType      string                 `protobuf:"bytes,6,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`                                                                                 // 任务类型
-	TaskParams    map[string]string      `protobuf:"bytes,7,rep,name=task_params,json=taskParams,proto3" json:"task_params,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 任务参数
+	JobId         string                 `protobuf:"bytes,2,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`                                                                                          // 任务ID
+	TaskStatus    string                 `protobuf:"bytes,3,opt,name=task_status,json=taskStatus,proto3" json:"task_status,omitempty"`                                                                           // 任务状态
+	TaskName      string                 `protobuf:"bytes,4,opt,name=task_name,json=taskName,proto3" json:"task_name,omitempty"`                                                                                 // 任务名称
+	Timestamp     int64                  `protobuf:"varint,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`                                                                                              // 任务执行时间
+	AgentId       string                 `protobuf:"bytes,6,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`                                                                                    // agent ID
+	TaskType      string                 `protobuf:"bytes,7,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`                                                                                 // 任务类型
+	TaskParams    map[string]string      `protobuf:"bytes,8,rep,name=task_params,json=taskParams,proto3" json:"task_params,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 任务参数
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -267,6 +268,13 @@ func (*Task) Descriptor() ([]byte, []int) {
 func (x *Task) GetTaskId() string {
 	if x != nil {
 		return x.TaskId
+	}
+	return ""
+}
+
+func (x *Task) GetJobId() string {
+	if x != nil {
+		return x.JobId
 	}
 	return ""
 }
@@ -463,16 +471,17 @@ const file_grpc_proto_rawDesc = "" +
 	"\rKernelVersion\x18\b \x01(\tR\rKernelVersion\"G\n" +
 	"\x06Record\x12)\n" +
 	"\x05agent\x18\x01 \x01(\v2\x13.filetransfer.AgentR\x05agent\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\tR\x04data\"\xb7\x02\n" +
+	"\x04data\x18\x02 \x01(\tR\x04data\"\xce\x02\n" +
 	"\x04Task\x12\x17\n" +
-	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x1f\n" +
-	"\vtask_status\x18\x02 \x01(\tR\n" +
+	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x15\n" +
+	"\x06job_id\x18\x02 \x01(\tR\x05jobId\x12\x1f\n" +
+	"\vtask_status\x18\x03 \x01(\tR\n" +
 	"taskStatus\x12\x1b\n" +
-	"\ttask_name\x18\x03 \x01(\tR\btaskName\x12\x1c\n" +
-	"\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\x12\x19\n" +
-	"\bagent_id\x18\x05 \x01(\tR\aagentId\x12\x1b\n" +
-	"\ttask_type\x18\x06 \x01(\tR\btaskType\x12C\n" +
-	"\vtask_params\x18\a \x03(\v2\".filetransfer.Task.TaskParamsEntryR\n" +
+	"\ttask_name\x18\x04 \x01(\tR\btaskName\x12\x1c\n" +
+	"\ttimestamp\x18\x05 \x01(\x03R\ttimestamp\x12\x19\n" +
+	"\bagent_id\x18\x06 \x01(\tR\aagentId\x12\x1b\n" +
+	"\ttask_type\x18\a \x01(\tR\btaskType\x12C\n" +
+	"\vtask_params\x18\b \x03(\v2\".filetransfer.Task.TaskParamsEntryR\n" +
 	"taskParams\x1a=\n" +
 	"\x0fTaskParamsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
