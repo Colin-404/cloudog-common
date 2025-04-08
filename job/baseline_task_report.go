@@ -1,5 +1,9 @@
 package job
 
+import (
+	"github.com/colin-404/cloudog-common/proto"
+)
+
 type BaselineReport struct {
 	TaskID    string          `json:"task_id"`
 	AgentID   string          `json:"agent_id"`
@@ -29,4 +33,12 @@ type BaselineCheck struct {
 	Details     string                 `json:"details,omitempty"`
 	References  []string               `json:"references,omitempty"`
 	ResultData  map[string]interface{} `json:"result_data,omitempty"`
+}
+
+func (b *BaselineReport) NewBaselineReport(task *proto.TaskReport) *BaselineReport {
+	return &BaselineReport{
+		TaskID:  task.TaskId,
+		AgentID: task.AgentId,
+		JobID:   task.JobId,
+	}
 }
