@@ -4,40 +4,24 @@ package filetransfer;
 
 option go_package = "github.com/colin-404/cloudog-common/proto";
 
-message Agent {
-  string ID = 1;
-  string Version = 2;
-  string Hostname = 3;
-  repeated string PrivateIPv4 = 4;
-  repeated string PublicIPv4 = 5;
-  string OS = 6;
-  string Platform = 7;
-  string KernelVersion = 8;
-}
+
 
 message Record {
-  Agent agent = 1;
-  string data = 2;
+  string AgentID = 1;
+  string Version = 2;
+  string Hostname = 3;
+  repeated string Environment = 4;
+  repeated string PrivateIPv4 = 5;
+  repeated string PublicIPv4 = 6;
+  string Platform = 7;
+  string KernelVersion = 8;
+  string data = 9;
 }
 
 
-//server --> agent，任务下发给agent
-// message Task {
-//   string task_id = 1;           // 任务ID
-//   string job_id = 2;            // 任务ID
-//   string task_status = 3;       // 任务状态
-//   string task_name = 4;         // 任务名称
-//   int64 timestamp = 5;          // 任务执行时间
-//   string agent_id = 6;     // agent ID
-//   string task_type = 7;         // 任务类型
-//   map<string, string> task_params = 8; // 任务参数 
-// }
 
 
-
-
-
-message TaskReport {
+message Task {
   string task_id = 1;           // 任务ID
   string job_id = 2;            // 任务ID
   string task_status = 3;       // 任务状态
@@ -45,7 +29,7 @@ message TaskReport {
   string agent_id = 5;     // agent ID
   string task_type = 6;         // 任务类型
   map<string, string> task_params = 7; // 任务参数 
-  bytes result = 8;       // 任务结果
+  bytes report = 8;       // 任务结果
 }
 
 
@@ -71,14 +55,14 @@ message TaskResponse {
 }
 
 
-// 上传任务执行结果
-service TaskResultTransfer {
-  rpc Upload(stream TaskReport) returns (TaskResponse);
+// 上传任务执行结果，返回结果响应
+service TaskTransfer {
+  rpc Upload(stream Task) returns (TaskResponse);
 }
 
-// 接收agent心跳
+// 接收agent心跳，下发task
 service RecordTransfer {
-  rpc Transfer(stream Record) returns (stream TaskReport);
+  rpc Transfer(stream Record) returns (stream Task);
 }
 
 

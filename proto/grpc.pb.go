@@ -65,120 +65,27 @@ func (x TaskResponse_Status) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TaskResponse_Status.Descriptor instead.
 func (TaskResponse_Status) EnumDescriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{3, 0}
-}
-
-type Agent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ID            string                 `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	Version       string                 `protobuf:"bytes,2,opt,name=Version,proto3" json:"Version,omitempty"`
-	Hostname      string                 `protobuf:"bytes,3,opt,name=Hostname,proto3" json:"Hostname,omitempty"`
-	PrivateIPv4   []string               `protobuf:"bytes,4,rep,name=PrivateIPv4,proto3" json:"PrivateIPv4,omitempty"`
-	PublicIPv4    []string               `protobuf:"bytes,5,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
-	OS            string                 `protobuf:"bytes,6,opt,name=OS,proto3" json:"OS,omitempty"`
-	Platform      string                 `protobuf:"bytes,7,opt,name=Platform,proto3" json:"Platform,omitempty"`
-	KernelVersion string                 `protobuf:"bytes,8,opt,name=KernelVersion,proto3" json:"KernelVersion,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Agent) Reset() {
-	*x = Agent{}
-	mi := &file_grpc_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Agent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Agent) ProtoMessage() {}
-
-func (x *Agent) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Agent.ProtoReflect.Descriptor instead.
-func (*Agent) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Agent) GetID() string {
-	if x != nil {
-		return x.ID
-	}
-	return ""
-}
-
-func (x *Agent) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *Agent) GetHostname() string {
-	if x != nil {
-		return x.Hostname
-	}
-	return ""
-}
-
-func (x *Agent) GetPrivateIPv4() []string {
-	if x != nil {
-		return x.PrivateIPv4
-	}
-	return nil
-}
-
-func (x *Agent) GetPublicIPv4() []string {
-	if x != nil {
-		return x.PublicIPv4
-	}
-	return nil
-}
-
-func (x *Agent) GetOS() string {
-	if x != nil {
-		return x.OS
-	}
-	return ""
-}
-
-func (x *Agent) GetPlatform() string {
-	if x != nil {
-		return x.Platform
-	}
-	return ""
-}
-
-func (x *Agent) GetKernelVersion() string {
-	if x != nil {
-		return x.KernelVersion
-	}
-	return ""
+	return file_grpc_proto_rawDescGZIP(), []int{2, 0}
 }
 
 type Record struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Agent         *Agent                 `protobuf:"bytes,1,opt,name=agent,proto3" json:"agent,omitempty"`
-	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	AgentID       string                 `protobuf:"bytes,1,opt,name=AgentID,proto3" json:"AgentID,omitempty"`
+	Version       string                 `protobuf:"bytes,2,opt,name=Version,proto3" json:"Version,omitempty"`
+	Hostname      string                 `protobuf:"bytes,3,opt,name=Hostname,proto3" json:"Hostname,omitempty"`
+	Environment   []string               `protobuf:"bytes,4,rep,name=Environment,proto3" json:"Environment,omitempty"`
+	PrivateIPv4   []string               `protobuf:"bytes,5,rep,name=PrivateIPv4,proto3" json:"PrivateIPv4,omitempty"`
+	PublicIPv4    []string               `protobuf:"bytes,6,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
+	Platform      string                 `protobuf:"bytes,7,opt,name=Platform,proto3" json:"Platform,omitempty"`
+	KernelVersion string                 `protobuf:"bytes,8,opt,name=KernelVersion,proto3" json:"KernelVersion,omitempty"`
+	Data          string                 `protobuf:"bytes,9,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Record) Reset() {
 	*x = Record{}
-	mi := &file_grpc_proto_msgTypes[1]
+	mi := &file_grpc_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -190,7 +97,7 @@ func (x *Record) String() string {
 func (*Record) ProtoMessage() {}
 
 func (x *Record) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[1]
+	mi := &file_grpc_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,14 +110,63 @@ func (x *Record) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Record.ProtoReflect.Descriptor instead.
 func (*Record) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{1}
+	return file_grpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Record) GetAgent() *Agent {
+func (x *Record) GetAgentID() string {
 	if x != nil {
-		return x.Agent
+		return x.AgentID
+	}
+	return ""
+}
+
+func (x *Record) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *Record) GetHostname() string {
+	if x != nil {
+		return x.Hostname
+	}
+	return ""
+}
+
+func (x *Record) GetEnvironment() []string {
+	if x != nil {
+		return x.Environment
 	}
 	return nil
+}
+
+func (x *Record) GetPrivateIPv4() []string {
+	if x != nil {
+		return x.PrivateIPv4
+	}
+	return nil
+}
+
+func (x *Record) GetPublicIPv4() []string {
+	if x != nil {
+		return x.PublicIPv4
+	}
+	return nil
+}
+
+func (x *Record) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+func (x *Record) GetKernelVersion() string {
+	if x != nil {
+		return x.KernelVersion
+	}
+	return ""
 }
 
 func (x *Record) GetData() string {
@@ -220,7 +176,7 @@ func (x *Record) GetData() string {
 	return ""
 }
 
-type TaskReport struct {
+type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TaskId        string                 `protobuf:"bytes,1,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`                                                                                       // 任务ID
 	JobId         string                 `protobuf:"bytes,2,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`                                                                                          // 任务ID
@@ -229,26 +185,26 @@ type TaskReport struct {
 	AgentId       string                 `protobuf:"bytes,5,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`                                                                                    // agent ID
 	TaskType      string                 `protobuf:"bytes,6,opt,name=task_type,json=taskType,proto3" json:"task_type,omitempty"`                                                                                 // 任务类型
 	TaskParams    map[string]string      `protobuf:"bytes,7,rep,name=task_params,json=taskParams,proto3" json:"task_params,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 任务参数
-	Result        []byte                 `protobuf:"bytes,8,opt,name=result,proto3" json:"result,omitempty"`                                                                                                     // 任务结果
+	Report        []byte                 `protobuf:"bytes,8,opt,name=report,proto3" json:"report,omitempty"`                                                                                                     // 任务结果
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TaskReport) Reset() {
-	*x = TaskReport{}
-	mi := &file_grpc_proto_msgTypes[2]
+func (x *Task) Reset() {
+	*x = Task{}
+	mi := &file_grpc_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TaskReport) String() string {
+func (x *Task) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TaskReport) ProtoMessage() {}
+func (*Task) ProtoMessage() {}
 
-func (x *TaskReport) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[2]
+func (x *Task) ProtoReflect() protoreflect.Message {
+	mi := &file_grpc_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -259,63 +215,63 @@ func (x *TaskReport) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TaskReport.ProtoReflect.Descriptor instead.
-func (*TaskReport) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use Task.ProtoReflect.Descriptor instead.
+func (*Task) Descriptor() ([]byte, []int) {
+	return file_grpc_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *TaskReport) GetTaskId() string {
+func (x *Task) GetTaskId() string {
 	if x != nil {
 		return x.TaskId
 	}
 	return ""
 }
 
-func (x *TaskReport) GetJobId() string {
+func (x *Task) GetJobId() string {
 	if x != nil {
 		return x.JobId
 	}
 	return ""
 }
 
-func (x *TaskReport) GetTaskStatus() string {
+func (x *Task) GetTaskStatus() string {
 	if x != nil {
 		return x.TaskStatus
 	}
 	return ""
 }
 
-func (x *TaskReport) GetCreateTime() string {
+func (x *Task) GetCreateTime() string {
 	if x != nil {
 		return x.CreateTime
 	}
 	return ""
 }
 
-func (x *TaskReport) GetAgentId() string {
+func (x *Task) GetAgentId() string {
 	if x != nil {
 		return x.AgentId
 	}
 	return ""
 }
 
-func (x *TaskReport) GetTaskType() string {
+func (x *Task) GetTaskType() string {
 	if x != nil {
 		return x.TaskType
 	}
 	return ""
 }
 
-func (x *TaskReport) GetTaskParams() map[string]string {
+func (x *Task) GetTaskParams() map[string]string {
 	if x != nil {
 		return x.TaskParams
 	}
 	return nil
 }
 
-func (x *TaskReport) GetResult() []byte {
+func (x *Task) GetReport() []byte {
 	if x != nil {
-		return x.Result
+		return x.Report
 	}
 	return nil
 }
@@ -335,7 +291,7 @@ type TaskResponse struct {
 
 func (x *TaskResponse) Reset() {
 	*x = TaskResponse{}
-	mi := &file_grpc_proto_msgTypes[3]
+	mi := &file_grpc_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -347,7 +303,7 @@ func (x *TaskResponse) String() string {
 func (*TaskResponse) ProtoMessage() {}
 
 func (x *TaskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[3]
+	mi := &file_grpc_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -360,7 +316,7 @@ func (x *TaskResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaskResponse.ProtoReflect.Descriptor instead.
 func (*TaskResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{3}
+	return file_grpc_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TaskResponse) GetTaskId() string {
@@ -403,23 +359,20 @@ var File_grpc_proto protoreflect.FileDescriptor
 const file_grpc_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"grpc.proto\x12\ffiletransfer\"\xe1\x01\n" +
-	"\x05Agent\x12\x0e\n" +
-	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x18\n" +
+	"grpc.proto\x12\ffiletransfer\"\x92\x02\n" +
+	"\x06Record\x12\x18\n" +
+	"\aAgentID\x18\x01 \x01(\tR\aAgentID\x12\x18\n" +
 	"\aVersion\x18\x02 \x01(\tR\aVersion\x12\x1a\n" +
 	"\bHostname\x18\x03 \x01(\tR\bHostname\x12 \n" +
-	"\vPrivateIPv4\x18\x04 \x03(\tR\vPrivateIPv4\x12\x1e\n" +
+	"\vEnvironment\x18\x04 \x03(\tR\vEnvironment\x12 \n" +
+	"\vPrivateIPv4\x18\x05 \x03(\tR\vPrivateIPv4\x12\x1e\n" +
 	"\n" +
-	"PublicIPv4\x18\x05 \x03(\tR\n" +
-	"PublicIPv4\x12\x0e\n" +
-	"\x02OS\x18\x06 \x01(\tR\x02OS\x12\x1a\n" +
+	"PublicIPv4\x18\x06 \x03(\tR\n" +
+	"PublicIPv4\x12\x1a\n" +
 	"\bPlatform\x18\a \x01(\tR\bPlatform\x12$\n" +
-	"\rKernelVersion\x18\b \x01(\tR\rKernelVersion\"G\n" +
-	"\x06Record\x12)\n" +
-	"\x05agent\x18\x01 \x01(\v2\x13.filetransfer.AgentR\x05agent\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\tR\x04data\"\xd8\x02\n" +
-	"\n" +
-	"TaskReport\x12\x17\n" +
+	"\rKernelVersion\x18\b \x01(\tR\rKernelVersion\x12\x12\n" +
+	"\x04data\x18\t \x01(\tR\x04data\"\xcc\x02\n" +
+	"\x04Task\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x15\n" +
 	"\x06job_id\x18\x02 \x01(\tR\x05jobId\x12\x1f\n" +
 	"\vtask_status\x18\x03 \x01(\tR\n" +
@@ -427,10 +380,10 @@ const file_grpc_proto_rawDesc = "" +
 	"\vcreate_time\x18\x04 \x01(\tR\n" +
 	"createTime\x12\x19\n" +
 	"\bagent_id\x18\x05 \x01(\tR\aagentId\x12\x1b\n" +
-	"\ttask_type\x18\x06 \x01(\tR\btaskType\x12I\n" +
-	"\vtask_params\x18\a \x03(\v2(.filetransfer.TaskReport.TaskParamsEntryR\n" +
+	"\ttask_type\x18\x06 \x01(\tR\btaskType\x12C\n" +
+	"\vtask_params\x18\a \x03(\v2\".filetransfer.Task.TaskParamsEntryR\n" +
 	"taskParams\x12\x16\n" +
-	"\x06result\x18\b \x01(\fR\x06result\x1a=\n" +
+	"\x06report\x18\b \x01(\fR\x06report\x1a=\n" +
 	"\x0fTaskParamsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb7\x02\n" +
@@ -446,11 +399,11 @@ const file_grpc_proto_rawDesc = "" +
 	"\x06Status\x12\v\n" +
 	"\aSUCCESS\x10\x00\x12\n" +
 	"\n" +
-	"\x06FAILED\x10\x012V\n" +
-	"\x12TaskResultTransfer\x12@\n" +
-	"\x06Upload\x12\x18.filetransfer.TaskReport\x1a\x1a.filetransfer.TaskResponse(\x012P\n" +
-	"\x0eRecordTransfer\x12>\n" +
-	"\bTransfer\x12\x14.filetransfer.Record\x1a\x18.filetransfer.TaskReport(\x010\x01B+Z)github.com/colin-404/cloudog-common/protob\x06proto3"
+	"\x06FAILED\x10\x012J\n" +
+	"\fTaskTransfer\x12:\n" +
+	"\x06Upload\x12\x12.filetransfer.Task\x1a\x1a.filetransfer.TaskResponse(\x012J\n" +
+	"\x0eRecordTransfer\x128\n" +
+	"\bTransfer\x12\x14.filetransfer.Record\x1a\x12.filetransfer.Task(\x010\x01B+Z)github.com/colin-404/cloudog-common/protob\x06proto3"
 
 var (
 	file_grpc_proto_rawDescOnce sync.Once
@@ -465,30 +418,28 @@ func file_grpc_proto_rawDescGZIP() []byte {
 }
 
 var file_grpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_grpc_proto_goTypes = []any{
 	(TaskResponse_Status)(0), // 0: filetransfer.TaskResponse.Status
-	(*Agent)(nil),            // 1: filetransfer.Agent
-	(*Record)(nil),           // 2: filetransfer.Record
-	(*TaskReport)(nil),       // 3: filetransfer.TaskReport
-	(*TaskResponse)(nil),     // 4: filetransfer.TaskResponse
-	nil,                      // 5: filetransfer.TaskReport.TaskParamsEntry
-	nil,                      // 6: filetransfer.TaskResponse.ParamsEntry
+	(*Record)(nil),           // 1: filetransfer.Record
+	(*Task)(nil),             // 2: filetransfer.Task
+	(*TaskResponse)(nil),     // 3: filetransfer.TaskResponse
+	nil,                      // 4: filetransfer.Task.TaskParamsEntry
+	nil,                      // 5: filetransfer.TaskResponse.ParamsEntry
 }
 var file_grpc_proto_depIdxs = []int32{
-	1, // 0: filetransfer.Record.agent:type_name -> filetransfer.Agent
-	5, // 1: filetransfer.TaskReport.task_params:type_name -> filetransfer.TaskReport.TaskParamsEntry
-	6, // 2: filetransfer.TaskResponse.params:type_name -> filetransfer.TaskResponse.ParamsEntry
-	0, // 3: filetransfer.TaskResponse.status:type_name -> filetransfer.TaskResponse.Status
-	3, // 4: filetransfer.TaskResultTransfer.Upload:input_type -> filetransfer.TaskReport
-	2, // 5: filetransfer.RecordTransfer.Transfer:input_type -> filetransfer.Record
-	4, // 6: filetransfer.TaskResultTransfer.Upload:output_type -> filetransfer.TaskResponse
-	3, // 7: filetransfer.RecordTransfer.Transfer:output_type -> filetransfer.TaskReport
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	4, // 0: filetransfer.Task.task_params:type_name -> filetransfer.Task.TaskParamsEntry
+	5, // 1: filetransfer.TaskResponse.params:type_name -> filetransfer.TaskResponse.ParamsEntry
+	0, // 2: filetransfer.TaskResponse.status:type_name -> filetransfer.TaskResponse.Status
+	2, // 3: filetransfer.TaskTransfer.Upload:input_type -> filetransfer.Task
+	1, // 4: filetransfer.RecordTransfer.Transfer:input_type -> filetransfer.Record
+	3, // 5: filetransfer.TaskTransfer.Upload:output_type -> filetransfer.TaskResponse
+	2, // 6: filetransfer.RecordTransfer.Transfer:output_type -> filetransfer.Task
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_grpc_proto_init() }
@@ -502,7 +453,7 @@ func file_grpc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_grpc_proto_rawDesc), len(file_grpc_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

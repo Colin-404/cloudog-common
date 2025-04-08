@@ -19,98 +19,98 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskResultTransfer_Upload_FullMethodName = "/filetransfer.TaskResultTransfer/Upload"
+	TaskTransfer_Upload_FullMethodName = "/filetransfer.TaskTransfer/Upload"
 )
 
-// TaskResultTransferClient is the client API for TaskResultTransfer service.
+// TaskTransferClient is the client API for TaskTransfer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// 上传任务执行结果
-type TaskResultTransferClient interface {
-	Upload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TaskReport, TaskResponse], error)
+// 上传任务执行结果，返回结果响应
+type TaskTransferClient interface {
+	Upload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[Task, TaskResponse], error)
 }
 
-type taskResultTransferClient struct {
+type taskTransferClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTaskResultTransferClient(cc grpc.ClientConnInterface) TaskResultTransferClient {
-	return &taskResultTransferClient{cc}
+func NewTaskTransferClient(cc grpc.ClientConnInterface) TaskTransferClient {
+	return &taskTransferClient{cc}
 }
 
-func (c *taskResultTransferClient) Upload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[TaskReport, TaskResponse], error) {
+func (c *taskTransferClient) Upload(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[Task, TaskResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &TaskResultTransfer_ServiceDesc.Streams[0], TaskResultTransfer_Upload_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &TaskTransfer_ServiceDesc.Streams[0], TaskTransfer_Upload_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[TaskReport, TaskResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Task, TaskResponse]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TaskResultTransfer_UploadClient = grpc.ClientStreamingClient[TaskReport, TaskResponse]
+type TaskTransfer_UploadClient = grpc.ClientStreamingClient[Task, TaskResponse]
 
-// TaskResultTransferServer is the server API for TaskResultTransfer service.
-// All implementations must embed UnimplementedTaskResultTransferServer
+// TaskTransferServer is the server API for TaskTransfer service.
+// All implementations must embed UnimplementedTaskTransferServer
 // for forward compatibility.
 //
-// 上传任务执行结果
-type TaskResultTransferServer interface {
-	Upload(grpc.ClientStreamingServer[TaskReport, TaskResponse]) error
-	mustEmbedUnimplementedTaskResultTransferServer()
+// 上传任务执行结果，返回结果响应
+type TaskTransferServer interface {
+	Upload(grpc.ClientStreamingServer[Task, TaskResponse]) error
+	mustEmbedUnimplementedTaskTransferServer()
 }
 
-// UnimplementedTaskResultTransferServer must be embedded to have
+// UnimplementedTaskTransferServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedTaskResultTransferServer struct{}
+type UnimplementedTaskTransferServer struct{}
 
-func (UnimplementedTaskResultTransferServer) Upload(grpc.ClientStreamingServer[TaskReport, TaskResponse]) error {
+func (UnimplementedTaskTransferServer) Upload(grpc.ClientStreamingServer[Task, TaskResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
-func (UnimplementedTaskResultTransferServer) mustEmbedUnimplementedTaskResultTransferServer() {}
-func (UnimplementedTaskResultTransferServer) testEmbeddedByValue()                            {}
+func (UnimplementedTaskTransferServer) mustEmbedUnimplementedTaskTransferServer() {}
+func (UnimplementedTaskTransferServer) testEmbeddedByValue()                      {}
 
-// UnsafeTaskResultTransferServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TaskResultTransferServer will
+// UnsafeTaskTransferServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TaskTransferServer will
 // result in compilation errors.
-type UnsafeTaskResultTransferServer interface {
-	mustEmbedUnimplementedTaskResultTransferServer()
+type UnsafeTaskTransferServer interface {
+	mustEmbedUnimplementedTaskTransferServer()
 }
 
-func RegisterTaskResultTransferServer(s grpc.ServiceRegistrar, srv TaskResultTransferServer) {
-	// If the following call pancis, it indicates UnimplementedTaskResultTransferServer was
+func RegisterTaskTransferServer(s grpc.ServiceRegistrar, srv TaskTransferServer) {
+	// If the following call pancis, it indicates UnimplementedTaskTransferServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&TaskResultTransfer_ServiceDesc, srv)
+	s.RegisterService(&TaskTransfer_ServiceDesc, srv)
 }
 
-func _TaskResultTransfer_Upload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(TaskResultTransferServer).Upload(&grpc.GenericServerStream[TaskReport, TaskResponse]{ServerStream: stream})
+func _TaskTransfer_Upload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TaskTransferServer).Upload(&grpc.GenericServerStream[Task, TaskResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TaskResultTransfer_UploadServer = grpc.ClientStreamingServer[TaskReport, TaskResponse]
+type TaskTransfer_UploadServer = grpc.ClientStreamingServer[Task, TaskResponse]
 
-// TaskResultTransfer_ServiceDesc is the grpc.ServiceDesc for TaskResultTransfer service.
+// TaskTransfer_ServiceDesc is the grpc.ServiceDesc for TaskTransfer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TaskResultTransfer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "filetransfer.TaskResultTransfer",
-	HandlerType: (*TaskResultTransferServer)(nil),
+var TaskTransfer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "filetransfer.TaskTransfer",
+	HandlerType: (*TaskTransferServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Upload",
-			Handler:       _TaskResultTransfer_Upload_Handler,
+			Handler:       _TaskTransfer_Upload_Handler,
 			ClientStreams: true,
 		},
 	},
@@ -125,9 +125,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// 接收agent心跳
+// 接收agent心跳，下发task
 type RecordTransferClient interface {
-	Transfer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Record, TaskReport], error)
+	Transfer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Record, Task], error)
 }
 
 type recordTransferClient struct {
@@ -138,26 +138,26 @@ func NewRecordTransferClient(cc grpc.ClientConnInterface) RecordTransferClient {
 	return &recordTransferClient{cc}
 }
 
-func (c *recordTransferClient) Transfer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Record, TaskReport], error) {
+func (c *recordTransferClient) Transfer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Record, Task], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &RecordTransfer_ServiceDesc.Streams[0], RecordTransfer_Transfer_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Record, TaskReport]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Record, Task]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RecordTransfer_TransferClient = grpc.BidiStreamingClient[Record, TaskReport]
+type RecordTransfer_TransferClient = grpc.BidiStreamingClient[Record, Task]
 
 // RecordTransferServer is the server API for RecordTransfer service.
 // All implementations must embed UnimplementedRecordTransferServer
 // for forward compatibility.
 //
-// 接收agent心跳
+// 接收agent心跳，下发task
 type RecordTransferServer interface {
-	Transfer(grpc.BidiStreamingServer[Record, TaskReport]) error
+	Transfer(grpc.BidiStreamingServer[Record, Task]) error
 	mustEmbedUnimplementedRecordTransferServer()
 }
 
@@ -168,7 +168,7 @@ type RecordTransferServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRecordTransferServer struct{}
 
-func (UnimplementedRecordTransferServer) Transfer(grpc.BidiStreamingServer[Record, TaskReport]) error {
+func (UnimplementedRecordTransferServer) Transfer(grpc.BidiStreamingServer[Record, Task]) error {
 	return status.Errorf(codes.Unimplemented, "method Transfer not implemented")
 }
 func (UnimplementedRecordTransferServer) mustEmbedUnimplementedRecordTransferServer() {}
@@ -193,11 +193,11 @@ func RegisterRecordTransferServer(s grpc.ServiceRegistrar, srv RecordTransferSer
 }
 
 func _RecordTransfer_Transfer_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RecordTransferServer).Transfer(&grpc.GenericServerStream[Record, TaskReport]{ServerStream: stream})
+	return srv.(RecordTransferServer).Transfer(&grpc.GenericServerStream[Record, Task]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RecordTransfer_TransferServer = grpc.BidiStreamingServer[Record, TaskReport]
+type RecordTransfer_TransferServer = grpc.BidiStreamingServer[Record, Task]
 
 // RecordTransfer_ServiceDesc is the grpc.ServiceDesc for RecordTransfer service.
 // It's only intended for direct use with grpc.RegisterService,
