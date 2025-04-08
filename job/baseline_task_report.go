@@ -35,7 +35,7 @@ type BaselineCheck struct {
 	ResultData  map[string]interface{} `json:"result_data,omitempty"`
 }
 
-func (b *BaselineReport) NewBaselineReport(task *proto.TaskReport) *BaselineReport {
+func (b *BaselineReport) NewBaselineReport(task *proto.Task) *BaselineReport {
 	return &BaselineReport{
 		TaskID:  task.TaskId,
 		AgentID: task.AgentId,
