@@ -14,7 +14,7 @@ type JobReport struct {
 	JobStatus  string            `json:"job_status"`
 	JobType    string            `json:"job_type"`
 	JobParams  map[string]string `json:"job_params"`
-	Task       []*proto.Task     `json:"task"`
+	Tasks      []*proto.Task     `json:"task"`
 	Summary    interface{}       `json:"summary"`
 	Results    interface{}       `json:"results"`
 }
