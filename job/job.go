@@ -50,6 +50,7 @@ func (j *JobReport) SetResults(results interface{}) {
 
 // 创建新的 BaselineJob 的构造函数
 func (j *JobReport) NewJobReport(jobType string, params map[string]string) *JobReport {
+
 	return &JobReport{
 		JobID:      GenerateJobID(),
 		JobType:    jobType,
