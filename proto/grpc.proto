@@ -5,17 +5,18 @@ package filetransfer;
 option go_package = "github.com/colin-404/cloudog-common/proto";
 
 
+message Agent {
+  string agent_id = 1;
+  string version = 2;
+  string hostname = 3;
+  repeated string environment = 4;
+  repeated string private_ipv4 = 5;
+  repeated string public_ipv4 = 6;
+}
 
 message Record {
-  string AgentID = 1;
-  string Version = 2;
-  string Hostname = 3;
-  repeated string Environment = 4;
-  repeated string PrivateIPv4 = 5;
-  repeated string PublicIPv4 = 6;
-  string Platform = 7;
-  string KernelVersion = 8;
-  string data = 9;
+  Agent agent = 1;
+  string data = 2;
 }
 
 
