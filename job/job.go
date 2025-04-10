@@ -8,7 +8,7 @@ import (
 
 // BaseJob 提供了 Job 接口的基本实现
 
-type JobReport struct {
+type Job struct {
 	JobID      string            `json:"job_id"`
 	CreateTime string            `json:"create_time"`
 	JobStatus  string            `json:"job_status"`
@@ -19,39 +19,9 @@ type JobReport struct {
 	Results    interface{}       `json:"results"`
 }
 
-// 实现 Job 接口的方法
-func (j *JobReport) GetJobID() string {
-	return j.JobID
-}
-
-func (j *JobReport) GetJobType() string {
-	return j.JobType
-}
-
-func (j *JobReport) GetJobParams() map[string]string {
-	return j.JobParams
-}
-
-func (j *JobReport) GetSummary() interface{} {
-	return j.Summary
-}
-
-func (j *JobReport) GetResults() interface{} {
-	return j.Results
-}
-
-func (j *JobReport) SetSummary(summary interface{}) {
-	j.Summary = summary
-}
-
-func (j *JobReport) SetResults(results interface{}) {
-	j.Results = results
-}
-
 // 创建新的 BaselineJob 的构造函数
-func (j *JobReport) NewJobReport(jobType string, params map[string]string) *JobReport {
-
-	return &JobReport{
+func NewJob(jobType string, params map[string]string) *Job {
+	return &Job{
 		JobID:      GenerateJobID(),
 		JobType:    jobType,
 		JobParams:  params,
