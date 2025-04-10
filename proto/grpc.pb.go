@@ -73,12 +73,14 @@ type Record struct {
 	AgentId       string                 `protobuf:"bytes,1,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
 	AgentVersion  string                 `protobuf:"bytes,2,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
 	Hostname      string                 `protobuf:"bytes,3,opt,name=hostname,proto3" json:"hostname,omitempty"`
-	AgentType     []string               `protobuf:"bytes,4,rep,name=agent_type,json=agentType,proto3" json:"agent_type,omitempty"`
-	PrivateIpv4   []string               `protobuf:"bytes,5,rep,name=private_ipv4,json=privateIpv4,proto3" json:"private_ipv4,omitempty"`
-	PublicIpv4    []string               `protobuf:"bytes,6,rep,name=public_ipv4,json=publicIpv4,proto3" json:"public_ipv4,omitempty"`
-	Platform      string                 `protobuf:"bytes,7,opt,name=platform,proto3" json:"platform,omitempty"`
-	KernelVersion string                 `protobuf:"bytes,8,opt,name=kernel_version,json=kernelVersion,proto3" json:"kernel_version,omitempty"`
-	Data          string                 `protobuf:"bytes,9,opt,name=data,proto3" json:"data,omitempty"`
+	ClousterName  string                 `protobuf:"bytes,4,opt,name=clouster_name,json=clousterName,proto3" json:"clouster_name,omitempty"`
+	NodeType      string                 `protobuf:"bytes,5,opt,name=node_type,json=nodeType,proto3" json:"node_type,omitempty"`
+	Environment   []string               `protobuf:"bytes,6,rep,name=environment,proto3" json:"environment,omitempty"`
+	PrivateIpv4   []string               `protobuf:"bytes,7,rep,name=private_ipv4,json=privateIpv4,proto3" json:"private_ipv4,omitempty"`
+	PublicIpv4    []string               `protobuf:"bytes,8,rep,name=public_ipv4,json=publicIpv4,proto3" json:"public_ipv4,omitempty"`
+	Platform      string                 `protobuf:"bytes,9,opt,name=platform,proto3" json:"platform,omitempty"`
+	KernelVersion string                 `protobuf:"bytes,10,opt,name=kernel_version,json=kernelVersion,proto3" json:"kernel_version,omitempty"`
+	Data          string                 `protobuf:"bytes,11,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -134,9 +136,23 @@ func (x *Record) GetHostname() string {
 	return ""
 }
 
-func (x *Record) GetAgentType() []string {
+func (x *Record) GetClousterName() string {
 	if x != nil {
-		return x.AgentType
+		return x.ClousterName
+	}
+	return ""
+}
+
+func (x *Record) GetNodeType() string {
+	if x != nil {
+		return x.NodeType
+	}
+	return ""
+}
+
+func (x *Record) GetEnvironment() []string {
+	if x != nil {
+		return x.Environment
 	}
 	return nil
 }
@@ -359,19 +375,21 @@ var File_grpc_proto protoreflect.FileDescriptor
 const file_grpc_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"grpc.proto\x12\ffiletransfer\"\x9e\x02\n" +
+	"grpc.proto\x12\ffiletransfer\"\xe3\x02\n" +
 	"\x06Record\x12\x19\n" +
 	"\bagent_id\x18\x01 \x01(\tR\aagentId\x12#\n" +
 	"\ragent_version\x18\x02 \x01(\tR\fagentVersion\x12\x1a\n" +
-	"\bhostname\x18\x03 \x01(\tR\bhostname\x12\x1d\n" +
-	"\n" +
-	"agent_type\x18\x04 \x03(\tR\tagentType\x12!\n" +
-	"\fprivate_ipv4\x18\x05 \x03(\tR\vprivateIpv4\x12\x1f\n" +
-	"\vpublic_ipv4\x18\x06 \x03(\tR\n" +
+	"\bhostname\x18\x03 \x01(\tR\bhostname\x12#\n" +
+	"\rclouster_name\x18\x04 \x01(\tR\fclousterName\x12\x1b\n" +
+	"\tnode_type\x18\x05 \x01(\tR\bnodeType\x12 \n" +
+	"\venvironment\x18\x06 \x03(\tR\venvironment\x12!\n" +
+	"\fprivate_ipv4\x18\a \x03(\tR\vprivateIpv4\x12\x1f\n" +
+	"\vpublic_ipv4\x18\b \x03(\tR\n" +
 	"publicIpv4\x12\x1a\n" +
-	"\bplatform\x18\a \x01(\tR\bplatform\x12%\n" +
-	"\x0ekernel_version\x18\b \x01(\tR\rkernelVersion\x12\x12\n" +
-	"\x04data\x18\t \x01(\tR\x04data\"\xcc\x02\n" +
+	"\bplatform\x18\t \x01(\tR\bplatform\x12%\n" +
+	"\x0ekernel_version\x18\n" +
+	" \x01(\tR\rkernelVersion\x12\x12\n" +
+	"\x04data\x18\v \x01(\tR\x04data\"\xcc\x02\n" +
 	"\x04Task\x12\x17\n" +
 	"\atask_id\x18\x01 \x01(\tR\x06taskId\x12\x15\n" +
 	"\x06job_id\x18\x02 \x01(\tR\x05jobId\x12\x1f\n" +

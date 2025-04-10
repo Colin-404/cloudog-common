@@ -10,12 +10,14 @@ message Record {
   string agent_id = 1;
   string agent_version = 2;
   string hostname = 3;
-  repeated string agent_type = 4;
-  repeated string private_ipv4 = 5;
-  repeated string public_ipv4 = 6;
-  string platform = 7;
-  string kernel_version = 8;
-  string data = 9;
+  string clouster_name = 4;
+  string node_type = 5;
+  repeated string environment = 6;
+  repeated string private_ipv4 = 7;
+  repeated string public_ipv4 = 8;
+  string platform = 9;
+  string kernel_version = 10;
+  string data = 11;
 }
 
 
