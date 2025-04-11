@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package filetransfer;
+
+option go_package = "github.com/colin-404/cloudog-common/proto";
+
+
+
+message Record {
+  string agent_id = 1;
+  string agent_version = 2;
+  string hostname = 3;
+  string clouster_name = 4;
+  string node_type = 5;
+  repeated string environment = 6;
+  repeated string private_ipv4 = 7;
+  repeated string public_ipv4 = 8;
+  string platform = 9;
+  string kernel_version = 10;
+  string data = 11;
+}
+
+
+
+
+message Task {
+  string task_id = 1;           // 任务ID
+  string job_id = 2;            // 任务ID
+  string task_status = 3;       // 任务状态
+  string create_time = 4;          // 任务执行时间
+  string agent_id = 5;     // agent ID
+  string task_type = 6;         // 任务类型
+  map<string, string> task_params = 7; // 任务参数 
+  bytes report = 8;       // 任务结果
+}
+
+
+//agent --> server,任务结果上传
+// message TaskResult {
+//   Task task = 1;
+//   bytes data = 2;
+// }
+
+//server --> agent,上传结果响应
+message TaskResponse {
+  string task_id = 1;           // 任务ID
+  string task_type = 2;         // 任务类型
+  map<string, string> params = 3; // 任务参数
+  // 状态码
+  enum Status {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
+  Status status = 4;
+  // 可选的错误信息
+  string message = 5;
+}
+
+
+// 上传任务执行结果，返回结果响应
+service TaskTransfer {
+  rpc Upload(stream Task) returns (TaskResponse);
+}
+
+// 接收agent心跳，下发task
+service RecordTransfer {
+  rpc Transfer(stream Record) returns (stream Task);
+}
+
+
+
+
