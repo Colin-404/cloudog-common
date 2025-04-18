@@ -1,4 +1,4 @@
-module github.com/colin-404/cloudog-common/v2
+module github.com/colin-404/cloudog-common
 
 go 1.24.1
 

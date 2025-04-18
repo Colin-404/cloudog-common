@@ -3,12 +3,12 @@ package comm
 import (
 	"bufio"
 	"encoding/binary"
-	io "io"
+	"io"
 	"os"
 	"sync"
 	"time"
 
-	comproto "github.com/colin-404/cloudog-common/v2/mproto"
+	"github.com/colin-404/cloudog-common/mproto"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -44,7 +44,7 @@ func NewPluginCli() (c *PluginCli) {
 	return
 }
 
-func (c *PluginCli) SendRawData(rec *comproto.RawData) (err error) {
+func (c *PluginCli) SendRawData(rec *mproto.RawData) (err error) {
 	c.wmu.Lock()
 	defer c.wmu.Unlock()
 	size := proto.Size(rec)
@@ -60,7 +60,7 @@ func (c *PluginCli) SendRawData(rec *comproto.RawData) (err error) {
 	_, err = c.writer.Write(buf)
 	return
 }
-func (c *PluginCli) ReceiveTask() (task comproto.Task, err error) {
+func (c *PluginCli) ReceiveTask() (task mproto.Task, err error) {
 	c.rmu.Lock()
 	defer c.rmu.Unlock()
 	var len uint32

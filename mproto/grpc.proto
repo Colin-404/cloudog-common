@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package mproto;
 
-option go_package = "github.com/colin-404/cloudog-common/v2/mproto";
+option go_package = "github.com/colin-404/cloudog-common/mproto";
 
 message RawData{
     int32 Type = 1;

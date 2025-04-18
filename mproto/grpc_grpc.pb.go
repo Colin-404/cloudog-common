@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: grpc.proto
 
-package comproto
+package mproto
 
 import (
 	context "context"
