@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package mproto;
+
+option go_package = "github.com/colin-404/cloudog-common/v2/mproto";
+
+message RawData{
+    int32 Type = 1;
+    int64 Timestamp = 2;
+    bytes Data = 3;
+}
+
+
+message Record{
+    repeated RawData RawData = 1;
+    string AgentID = 2;
+    int32 Type = 3;
+    repeated string PublicIPv4 = 4;
+    repeated string PrivateIPv4 = 5;
+    repeated string PublicIPv6 = 6;
+    repeated string PrivateIPv6 = 7;
+    string Hostname = 8;
+    string Version = 9;
+}
+
+
+
+message Task {
+    string ID = 1;
+    string Status = 2;
+    int32 Type = 3;
+    map<string, string> Params = 4;
+}
+
+
+//server --> agent,上传结果响应
+// message TaskResponse {
+//     string TaskID = 1;           // 任务ID
+//     string TaskType = 2;         // 任务类型
+//     map<string, string> Params = 3; // 任务参数
+//     // 状态码
+//     enum Status {
+//       SUCCESS = 0;
+//       FAILED = 1;
+//     }
+//     Status status = 4;
+//     // 可选的错误信息
+//     string Message = 5;
+// }
+
+
+// 上传任务执行结果，返回结果响应
+// service TaskTransfer {
+//   rpc Upload(stream Task) returns (TaskResponse);
+// }
+
+// 接收agent心跳，下发task
+service Transfer {
+  rpc Transfer(stream Record) returns (stream Task);
+}
