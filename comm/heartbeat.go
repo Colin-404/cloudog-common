@@ -1,7 +1,8 @@
 package comm
 
 const (
-	HeartBeatData = 2000
+	HeartBeatData       = 2000
+	PluginHeartBeatData = 2001
 )
 
 type Heartbeat struct {
@@ -43,4 +44,21 @@ type Heartbeat struct {
 	BootTime        string `json:"boot_time"`
 	CPUUsage        string `json:"cpu_usage"`
 	MemUsage        string `json:"mem_usage"`
+}
+
+type PluginHeartbeat struct {
+	Name       string `json:"name"`
+	Version    string `json:"version"`
+	CPU        string `json:"cpu"`
+	RSS        string `json:"rss"`
+	ReadSpeed  string `json:"read_speed"`
+	WriteSpeed string `json:"write_speed"`
+	PID        string `json:"pid"`
+	NFD        string `json:"nfd"`
+	StartTime  string `json:"start_time"`
+	Du         string `json:"du"`
+	RxTPS      string `json:"rx_tps"`
+	TxTPS      string `json:"tx_tps"`
+	RxSpeed    string `json:"rx_speed"`
+	TxSpeed    string `json:"tx_speed"`
 }
