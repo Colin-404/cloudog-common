@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Transfer_Transfer_FullMethodName = "/comproto.Transfer/Transfer"
+	Transfer_Transfer_FullMethodName = "/mproto.Transfer/Transfer"
 )
 
 // TransferClient is the client API for Transfer service.
@@ -104,7 +104,7 @@ type Transfer_TransferServer = grpc.BidiStreamingServer[Record, Task]
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Transfer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "comproto.Transfer",
+	ServiceName: "mproto.Transfer",
 	HandlerType: (*TransferServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

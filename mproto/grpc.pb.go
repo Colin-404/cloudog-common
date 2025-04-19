@@ -24,8 +24,8 @@ const (
 type RawData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Type          int32                  `protobuf:"varint,1,opt,name=Type,proto3" json:"Type,omitempty"`
-	Timestamp     int64                  `protobuf:"varint,3,opt,name=Timestamp,proto3" json:"Timestamp,omitempty"`
-	Data          []byte                 `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data,omitempty"`
+	Timestamp     int64                  `protobuf:"varint,2,opt,name=Timestamp,proto3" json:"Timestamp,omitempty"`
+	Data          []byte                 `protobuf:"bytes,3,opt,name=Data,proto3" json:"Data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -83,15 +83,15 @@ func (x *RawData) GetData() []byte {
 
 type Record struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RawData       []*RawData             `protobuf:"bytes,1,rep,name=RawData,proto3" json:"RawData,omitempty"`
+	RawData       *RawData               `protobuf:"bytes,1,opt,name=RawData,proto3" json:"RawData,omitempty"`
 	AgentID       string                 `protobuf:"bytes,2,opt,name=AgentID,proto3" json:"AgentID,omitempty"`
 	Type          int32                  `protobuf:"varint,3,opt,name=Type,proto3" json:"Type,omitempty"`
-	PublicIPv4    []string               `protobuf:"bytes,5,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
-	PrivateIPv4   []string               `protobuf:"bytes,6,rep,name=PrivateIPv4,proto3" json:"PrivateIPv4,omitempty"`
-	PublicIPv6    []string               `protobuf:"bytes,7,rep,name=PublicIPv6,proto3" json:"PublicIPv6,omitempty"`
-	PrivateIPv6   []string               `protobuf:"bytes,8,rep,name=PrivateIPv6,proto3" json:"PrivateIPv6,omitempty"`
-	Hostname      string                 `protobuf:"bytes,9,opt,name=Hostname,proto3" json:"Hostname,omitempty"`
-	Version       string                 `protobuf:"bytes,10,opt,name=Version,proto3" json:"Version,omitempty"`
+	PublicIPv4    []string               `protobuf:"bytes,4,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
+	PrivateIPv4   []string               `protobuf:"bytes,5,rep,name=PrivateIPv4,proto3" json:"PrivateIPv4,omitempty"`
+	PublicIPv6    []string               `protobuf:"bytes,6,rep,name=PublicIPv6,proto3" json:"PublicIPv6,omitempty"`
+	PrivateIPv6   []string               `protobuf:"bytes,7,rep,name=PrivateIPv6,proto3" json:"PrivateIPv6,omitempty"`
+	Hostname      string                 `protobuf:"bytes,8,opt,name=Hostname,proto3" json:"Hostname,omitempty"`
+	Version       string                 `protobuf:"bytes,9,opt,name=Version,proto3" json:"Version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,7 +126,7 @@ func (*Record) Descriptor() ([]byte, []int) {
 	return file_grpc_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Record) GetRawData() []*RawData {
+func (x *Record) GetRawData() *RawData {
 	if x != nil {
 		return x.RawData
 	}
@@ -262,36 +262,35 @@ var File_grpc_proto protoreflect.FileDescriptor
 const file_grpc_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"grpc.proto\x12\bcomproto\"O\n" +
+	"grpc.proto\x12\x06mproto\"O\n" +
 	"\aRawData\x12\x12\n" +
 	"\x04Type\x18\x01 \x01(\x05R\x04Type\x12\x1c\n" +
-	"\tTimestamp\x18\x03 \x01(\x03R\tTimestamp\x12\x12\n" +
-	"\x04Data\x18\x02 \x01(\fR\x04Data\"\x9d\x02\n" +
-	"\x06Record\x12+\n" +
-	"\aRawData\x18\x01 \x03(\v2\x11.comproto.RawDataR\aRawData\x12\x18\n" +
+	"\tTimestamp\x18\x02 \x01(\x03R\tTimestamp\x12\x12\n" +
+	"\x04Data\x18\x03 \x01(\fR\x04Data\"\x9b\x02\n" +
+	"\x06Record\x12)\n" +
+	"\aRawData\x18\x01 \x01(\v2\x0f.mproto.RawDataR\aRawData\x12\x18\n" +
 	"\aAgentID\x18\x02 \x01(\tR\aAgentID\x12\x12\n" +
 	"\x04Type\x18\x03 \x01(\x05R\x04Type\x12\x1e\n" +
 	"\n" +
-	"PublicIPv4\x18\x05 \x03(\tR\n" +
+	"PublicIPv4\x18\x04 \x03(\tR\n" +
 	"PublicIPv4\x12 \n" +
-	"\vPrivateIPv4\x18\x06 \x03(\tR\vPrivateIPv4\x12\x1e\n" +
+	"\vPrivateIPv4\x18\x05 \x03(\tR\vPrivateIPv4\x12\x1e\n" +
 	"\n" +
-	"PublicIPv6\x18\a \x03(\tR\n" +
+	"PublicIPv6\x18\x06 \x03(\tR\n" +
 	"PublicIPv6\x12 \n" +
-	"\vPrivateIPv6\x18\b \x03(\tR\vPrivateIPv6\x12\x1a\n" +
-	"\bHostname\x18\t \x01(\tR\bHostname\x12\x18\n" +
-	"\aVersion\x18\n" +
-	" \x01(\tR\aVersion\"\xb1\x01\n" +
+	"\vPrivateIPv6\x18\a \x03(\tR\vPrivateIPv6\x12\x1a\n" +
+	"\bHostname\x18\b \x01(\tR\bHostname\x12\x18\n" +
+	"\aVersion\x18\t \x01(\tR\aVersion\"\xaf\x01\n" +
 	"\x04Task\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x16\n" +
 	"\x06Status\x18\x02 \x01(\tR\x06Status\x12\x12\n" +
-	"\x04Type\x18\x03 \x01(\x05R\x04Type\x122\n" +
-	"\x06Params\x18\x04 \x03(\v2\x1a.comproto.Task.ParamsEntryR\x06Params\x1a9\n" +
+	"\x04Type\x18\x03 \x01(\x05R\x04Type\x120\n" +
+	"\x06Params\x18\x04 \x03(\v2\x18.mproto.Task.ParamsEntryR\x06Params\x1a9\n" +
 	"\vParamsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012<\n" +
-	"\bTransfer\x120\n" +
-	"\bTransfer\x12\x10.comproto.Record\x1a\x0e.comproto.Task(\x010\x01B1Z/github.com/colin-404/cloudog-common/v2/comprotob\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x0128\n" +
+	"\bTransfer\x12,\n" +
+	"\bTransfer\x12\x0e.mproto.Record\x1a\f.mproto.Task(\x010\x01B,Z*github.com/colin-404/cloudog-common/mprotob\x06proto3"
 
 var (
 	file_grpc_proto_rawDescOnce sync.Once
@@ -307,16 +306,16 @@ func file_grpc_proto_rawDescGZIP() []byte {
 
 var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_grpc_proto_goTypes = []any{
-	(*RawData)(nil), // 0: comproto.RawData
-	(*Record)(nil),  // 1: comproto.Record
-	(*Task)(nil),    // 2: comproto.Task
-	nil,             // 3: comproto.Task.ParamsEntry
+	(*RawData)(nil), // 0: mproto.RawData
+	(*Record)(nil),  // 1: mproto.Record
+	(*Task)(nil),    // 2: mproto.Task
+	nil,             // 3: mproto.Task.ParamsEntry
 }
 var file_grpc_proto_depIdxs = []int32{
-	0, // 0: comproto.Record.RawData:type_name -> comproto.RawData
-	3, // 1: comproto.Task.Params:type_name -> comproto.Task.ParamsEntry
-	1, // 2: comproto.Transfer.Transfer:input_type -> comproto.Record
-	2, // 3: comproto.Transfer.Transfer:output_type -> comproto.Task
+	0, // 0: mproto.Record.RawData:type_name -> mproto.RawData
+	3, // 1: mproto.Task.Params:type_name -> mproto.Task.ParamsEntry
+	1, // 2: mproto.Transfer.Transfer:input_type -> mproto.Record
+	2, // 3: mproto.Transfer.Transfer:output_type -> mproto.Task
 	3, // [3:4] is the sub-list for method output_type
 	2, // [2:3] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
