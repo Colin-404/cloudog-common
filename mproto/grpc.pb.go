@@ -83,7 +83,7 @@ func (x *RawData) GetData() []byte {
 
 type Record struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RawData       *RawData               `protobuf:"bytes,1,opt,name=RawData,proto3" json:"RawData,omitempty"`
+	RawData       []*RawData             `protobuf:"bytes,1,rep,name=RawData,proto3" json:"RawData,omitempty"`
 	AgentID       string                 `protobuf:"bytes,2,opt,name=AgentID,proto3" json:"AgentID,omitempty"`
 	Type          int32                  `protobuf:"varint,3,opt,name=Type,proto3" json:"Type,omitempty"`
 	PublicIPv4    []string               `protobuf:"bytes,4,rep,name=PublicIPv4,proto3" json:"PublicIPv4,omitempty"`
@@ -126,7 +126,7 @@ func (*Record) Descriptor() ([]byte, []int) {
 	return file_grpc_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Record) GetRawData() *RawData {
+func (x *Record) GetRawData() []*RawData {
 	if x != nil {
 		return x.RawData
 	}
@@ -268,7 +268,7 @@ const file_grpc_proto_rawDesc = "" +
 	"\tTimestamp\x18\x02 \x01(\x03R\tTimestamp\x12\x12\n" +
 	"\x04Data\x18\x03 \x01(\fR\x04Data\"\x9b\x02\n" +
 	"\x06Record\x12)\n" +
-	"\aRawData\x18\x01 \x01(\v2\x0f.mproto.RawDataR\aRawData\x12\x18\n" +
+	"\aRawData\x18\x01 \x03(\v2\x0f.mproto.RawDataR\aRawData\x12\x18\n" +
 	"\aAgentID\x18\x02 \x01(\tR\aAgentID\x12\x12\n" +
 	"\x04Type\x18\x03 \x01(\x05R\x04Type\x12\x1e\n" +
 	"\n" +
