@@ -12,7 +12,7 @@ message RawData{
 
 
 message Record{
-    RawData RawData = 1;
+    repeated RawData RawData = 1;
     string AgentID = 2;
     int32 Type = 3;
     repeated string PublicIPv4 = 4;
