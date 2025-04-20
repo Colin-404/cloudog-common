@@ -6,8 +6,7 @@ const (
 	LinuxBaselinePluginName = "baselinelinux"
 )
 
-// DownloadConfig 下载配置
-type DownloadConfig struct {
+type PluginConfig struct {
 	Name         string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Type         string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	Version      string   `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
@@ -15,4 +14,10 @@ type DownloadConfig struct {
 	Signature    string   `protobuf:"bytes,5,opt,name=signature,proto3" json:"signature,omitempty"`
 	DownloadUrls []string `protobuf:"bytes,6,rep,name=download_urls,json=downloadUrls,proto3" json:"download_urls,omitempty"`
 	Detail       string   `protobuf:"bytes,7,opt,name=detail,proto3" json:"detail,omitempty"`
+}
+
+type AgentConfig struct {
+	AgentID       string         `json:"agent_id"`
+	AgentVersion  string         `json:"agent_version"`
+	PluginConfigs []PluginConfig `json:"plugin_configs"`
 }
