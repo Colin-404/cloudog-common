@@ -1,7 +1,8 @@
 package comm
 
 const (
-	LinuxBaseline           = 1000
+	PluginTask              = 3000
+	LinuxBaselineTask       = 3001
 	LinuxBaselinePluginName = "baselinelinux"
 )
 
@@ -14,11 +15,4 @@ type DownloadConfig struct {
 	Signature    string   `protobuf:"bytes,5,opt,name=signature,proto3" json:"signature,omitempty"`
 	DownloadUrls []string `protobuf:"bytes,6,rep,name=download_urls,json=downloadUrls,proto3" json:"download_urls,omitempty"`
 	Detail       string   `protobuf:"bytes,7,opt,name=detail,proto3" json:"detail,omitempty"`
-}
-
-type PostTask struct {
-	TaskID   string            `json:"task_id"`
-	TaskType string            `json:"task_type"`
-	Config   DownloadConfig    `json:"config"`
-	Params   map[string]string `json:"params"`
 }
