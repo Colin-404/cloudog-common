@@ -4,7 +4,8 @@ const (
 	SyncConfigTask          = 1000
 	PluginTask              = 3000
 	LinuxBaselineTask       = 3001
-	LinuxBaselinePluginName = "baselinelinux"
+	BaselineDataType        = 8000
+	LinuxBaselinePluginName = "linux_baseline"
 )
 
 type PluginConfig struct {
