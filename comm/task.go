@@ -1,6 +1,7 @@
 package comm
 
 const (
+	SyncConfigTask          = 1000
 	PluginTask              = 3000
 	LinuxBaselineTask       = 3001
 	LinuxBaselinePluginName = "baselinelinux"
