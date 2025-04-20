@@ -4,6 +4,10 @@ const (
 	BaselineData            = 8000
 	BaselineDataStatus      = 8001
 	LinuxBaselinePluginName = "linux_baseline"
+	//debian/ubuntu
+	DebianLinuxBaselineID = 1300
+	//centos/redhat
+	CentosLinuxBaselineID = 1301
 )
 
 type BaselineInfo struct {
