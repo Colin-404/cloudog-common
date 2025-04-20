@@ -18,7 +18,7 @@ type PluginConfig struct {
 }
 
 type AgentConfig struct {
-	AgentID       string         `json:"agent_id"`
-	AgentVersion  string         `json:"agent_version"`
-	PluginConfigs []PluginConfig `json:"plugin_configs"`
+	AgentID       string          `json:"agent_id"`
+	AgentVersion  string          `json:"agent_version"`
+	PluginConfigs []*PluginConfig `json:"plugin_configs"`
 }
