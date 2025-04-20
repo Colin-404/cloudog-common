@@ -1,12 +1,9 @@
 package comm
 
 const (
-	SyncConfigTask          = 1000
-	PluginTask              = 3000
-	LinuxBaselineTask       = 3001
-	BaselineData            = 8000
-	BaselineDataStatus      = 8001
-	LinuxBaselinePluginName = "linux_baseline"
+	SyncConfigTask    = 1000
+	PluginTask        = 3000
+	LinuxBaselineTask = 3001
 )
 
 type PluginConfig struct {
