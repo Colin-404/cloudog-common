@@ -23,9 +23,9 @@ type AgentConfig struct {
 }
 
 type TaskData struct {
-	TaskID     string `json:"task_id"`
-	TaskName   string `json:"task_name"`
-	TaskType   string `json:"task_type"`
-	TaskStatus string `json:"task_status"`
-	TaskResult string `json:"task_result"`
+	TaskID     string      `json:"task_id"`
+	TaskName   string      `json:"task_name"`
+	TaskType   string      `json:"task_type"`
+	TaskStatus string      `json:"task_status"`
+	TaskResult interface{} `json:"task_result"`
 }
