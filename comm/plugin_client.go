@@ -60,7 +60,7 @@ func (c *PluginCli) SendRawData(rec *mproto.RawData) (err error) {
 	_, err = c.writer.Write(buf)
 	return
 }
-func (c *PluginCli) ReceiveTask() (task mproto.Task, err error) {
+func (c *PluginCli) ReceiveTask() (task *mproto.Task, err error) {
 	c.rmu.Lock()
 	defer c.rmu.Unlock()
 	var len uint32
@@ -78,7 +78,7 @@ func (c *PluginCli) ReceiveTask() (task mproto.Task, err error) {
 		return
 	}
 
-	err = proto.Unmarshal(buf, &task)
+	err = proto.Unmarshal(buf, task)
 	return
 }
 func (c *PluginCli) Flush() (err error) {

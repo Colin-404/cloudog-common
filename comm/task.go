@@ -21,3 +21,11 @@ type AgentConfig struct {
 	AgentVersion  string          `json:"agent_version"`
 	PluginConfigs []*PluginConfig `json:"plugin_configs"`
 }
+
+type TaskRawData struct {
+	TaskID     string `json:"task_id"`
+	TaskName   string `json:"task_name"`
+	TaskType   string `json:"task_type"`
+	TaskStatus string `json:"task_status"`
+	TaskResult string `json:"task_result"`
+}
