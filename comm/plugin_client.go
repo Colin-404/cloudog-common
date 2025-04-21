@@ -66,20 +66,23 @@ func (c *PluginCli) ReceiveTask() (task *mproto.Task, err error) {
 	var len uint32
 	err = binary.Read(c.reader, binary.LittleEndian, &len)
 	if err != nil {
-		return
+		return nil, err
 	}
 	var buf []byte
 	buf, err = c.reader.Peek(int(len))
 	if err != nil {
-		return
+		return nil, err
 	}
 	_, err = c.reader.Discard(int(len))
 	if err != nil {
-		return
+		return nil, err
 	}
-
+	task = &mproto.Task{}
 	err = proto.Unmarshal(buf, task)
-	return
+	if err != nil {
+		return nil, err
+	}
+	return task, nil
 }
 func (c *PluginCli) Flush() (err error) {
 	c.wmu.Lock()
